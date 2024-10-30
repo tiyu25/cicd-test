@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/tiyu25/cicd-test.git'
+                git branch: 'dev', url: 'https://github.com/tiyu25/cicd-test.git'
             }
         }
         stage('Build and Deploy') {
