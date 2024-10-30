@@ -1,20 +1,17 @@
 pipeline {
     agent any
+    tools {
+        gradle 'gradle'
+    }
     stages {
-        stage('Clone Repository') {
+        stage('저장소 복제') {
             steps {
-                git branch: 'dev', url: 'https://github.com/tiyu25/cicd-test.git'
+                {복사한 내용}
             }
         }
-        stage('Build and Deploy') {
+        stage('빌드') {
             steps {
-                script {
-                    withEnv(['DOCKER_COMPOSE_PATH=/usr/local/bin/docker-compose']) {
-                        sh 'docker rm -f jenkins || true'  // 기존 jenkins 컨테이너 강제 중지 및 삭제
-                        sh '$DOCKER_COMPOSE_PATH down'
-                        sh '$DOCKER_COMPOSE_PATH up -d --build'
-                    }
-                }
+                sh "./gradlew clean build"
             }
         }
     }
