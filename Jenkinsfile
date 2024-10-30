@@ -10,6 +10,7 @@ pipeline {
             steps {
                 script {
                     withEnv(['DOCKER_COMPOSE_PATH=/usr/local/bin/docker-compose']) {
+                        sh 'docker rm -f jenkins || true'  // 기존 jenkins 컨테이너 강제 중지 및 삭제
                         sh '$DOCKER_COMPOSE_PATH down'
                         sh '$DOCKER_COMPOSE_PATH up -d --build'
                     }
