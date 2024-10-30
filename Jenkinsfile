@@ -9,10 +9,8 @@ pipeline {
         stage('Build and Deploy') {
             steps {
                 script {
-                    withEnv(['DOCKER_COMPOSE_PATH=/usr/local/bin/docker-compose']) {
-                        sh '$DOCKER_COMPOSE_PATH down'
-                        sh '$DOCKER_COMPOSE_PATH up -d --build'
-                    }
+                    sh '$DOCKER_COMPOSE_PATH down'
+                    sh '$DOCKER_COMPOSE_PATH up -d --build'
                 }
             }
         }
